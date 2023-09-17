@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block body %}
+<html xmlns="http://www.w3.org/1999/html">
+  <head>
+    <meta charset="utf-8">
+    <title>Клиент</title>
+  </head>
+  <body style="background-color: #000;">
+  <p class="title" style="color: white; font-size: 3em; text-align: center;"><img src="{{url_for('static', filename='devil_2.jpg')}}" width="75" height="50"><strong>Client</strong></img></p>
+  <form method=post style="text-align: center;" >
+    <label for="version" style="color: white;">Version</label>
+    <select id="version" name="model_version" style="border-radius: 20px; box-sizing: border-box;">
+      {% for version in versions %}
+      <option value="{{ version }}">{{ version }}</option>
+      {% endfor %}
+    </select>
+    <p><textarea name="message" cols="30" rows="10" placeholder="Введите сообщение" value="{{request.form.message }}" style="background-color: #15172b; border-radius: 20px; box-sizing: border-box; height: 200px; padding: 20px; width: 320px; font-size: 18px; color: white"></textarea></p>
+    <p><input type=submit value="Отправить" style="background-color: #08d; border-radius: 12px; border: 0; box-sizing: border-box; color: #eee; cursor: pointer; font-size: 18px; height: 50px; margin-top: 38px; // outline: 0; text-align: center; width: 200px;"></p>
+  </form>
+  {% if response %}
+    <br><p class="request" style="color: white; font-size: 1.5em; word-wrap: normal">Вопрос: {{ request.form.message }}</p></br>
+    <p class="response" style="color: white; font-size: 1.5em; word-wrap: normal">Ответ: {{ response }}</p>
+  {% endif %}
+  {% endblock %}
+  </body>
+</html>
